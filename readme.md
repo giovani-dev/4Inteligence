@@ -1,0 +1,5 @@
+- Documentacao: https://documenter.getpostman.com/view/11940350/TzY1gvv5
+- Usuario Admin:
+    - email: admin@email.com
+    - senha: 123
+- Para iniciar o projeto basta executar esse comando: sudo docker-compose up --build
