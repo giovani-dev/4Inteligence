@@ -1,0 +1,16 @@
+[
+{
+  "model": "Api.login",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$260000$RJehSStVlgUSd52yad1kXI$ldWCNXwUjc/Zex0uBsV0DzgNSXqM0KnWb7kUaA4VTwE=",
+    "last_login": null,
+    "identifier": "965a5e1a-b554-4d17-a3eb-16c841234849",
+    "registration_date": "2021-05-31T20:46:25.830Z",
+    "email": "admin@email.com",
+    "is_admin": false,
+    "is_active": true,
+    "is_trusty": true
+  }
+}
+]
