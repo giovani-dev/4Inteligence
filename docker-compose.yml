@@ -1,0 +1,53 @@
+version: '3.7'
+services:
+    api_db:
+        image: mysql:5.7
+        container_name: UserDataBase
+        restart: always
+        environment: 
+            MYSQL_ROOT_PASSWORD: rootpassword
+            MYSQL_DATABASE: UserDataBase
+            MYSQL_USER: ApiUserManager
+            MYSQL_PASSWORD: apipassword
+        ports:
+            - '3306:3306'
+        volumes:
+            - my-user-api-db:/var/lib/mysql
+    user_api_migration:
+        build: 
+            context: .
+            dockerfile: ./services/User/docker/Dockerfile
+        command: sh run.sh
+        depends_on:
+            - "api_db"
+    user_api:
+        container_name: UserApi
+        build: 
+            context: .
+            dockerfile: ./services/User/docker/Dockerfile
+        command: python manage.py runserver 0.0.0.0:8088
+        ports:
+            - "8088:8088"
+        depends_on:
+            - "api_db"
+            - "user_api_migration"
+    auth_api_migration:
+        build: 
+            context: .
+            dockerfile: ./services/Auth/docker/Dockerfile
+        command: sh run.sh
+        depends_on:
+            - "api_db"
+    auth_api:
+        container_name: AuthApi
+        build: 
+            context: .
+            dockerfile: ./services/Auth/docker/Dockerfile
+        command: python manage.py runserver 0.0.0.0:8080
+        ports:
+            - "8080:8080"
+        depends_on:
+            - "api_db"
+            - "user_api_migration"
+volumes:
+    my-user-api-db:
