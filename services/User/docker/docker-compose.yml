@@ -1,0 +1,10 @@
+version: '3.7'
+services: 
+    user_api:
+        container_name: UserApi
+        build: 
+            context: ../../
+            dockerfile: ./User/docker/Dockerfile
+        command: python manage.py runserver 0.0.0.0:8000
+        ports:
+            - "8000:8000"
